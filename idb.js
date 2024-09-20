@@ -1,4 +1,5 @@
 // idb.js
+// Developer: Sharon Salman, ID: 206919979, Developer: Ido Michael Bernea , ID: 316315837 
 class IDBLibrary {
     constructor(dbName, version) {
       this.dbName = dbName;
