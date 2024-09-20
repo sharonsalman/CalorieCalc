@@ -41,10 +41,17 @@ async function addCalorieItem(event) {
     date: new Date(date).toISOString() 
   };
 
-  await db.add(item); 
-  updateCalorieList(); 
-  event.target.reset(); 
-  setDefaultDate(); 
+  try {
+    await db.add(item); 
+    updateCalorieList(); 
+   
+    alert('Item added successfully!');
+    event.target.reset(); 
+    setDefaultDate(); 
+  } catch (error) {
+
+  alert('Error adding item. Please try again.')
+}
 }
 
 
