@@ -1,4 +1,6 @@
 // report.js
+// Developer: Sharon Salman, ID: 206919979, Developer: Ido Michael Bernea , ID: 316315837 
+
 import IDBLibrary from './idb.js';
 
 const db = new IDBLibrary('CalorieCalculatorDB', 1);

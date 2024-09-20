@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monthly Calorie Report</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-        input, button { margin: 5px 0; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Monthly Calorie Report</h1>
+        <!-- Developer: Sharon Salman, ID: 206919979, Developer: Ido Michael Bernea , ID: 316315837 --> 
 
-    <input type="number" id="reportMonth" placeholder="Month (1-12)" min="1" max="12" required>
-    <input type="number" id="reportYear" placeholder="Year" required>
-    <button id="generateReport">Generate Report</button>
+    <div class="container">
+        <h1>Monthly Calorie Report</h1>
 
-    <div id="monthlyReport"></div>
+        <form id="reportForm">
+            <input type="number" id="reportMonth" placeholder="Month (1-12)" min="1" max="12" required>
+            <input type="number" id="reportYear" placeholder="Year" required>
+            <button type="button" id="generateReport">Generate Report</button>
+        </form>
 
-    <p><a href="index.html">Back to Calculator</a></p>
+        <div id="monthlyReport"></div>
+
+        <a href="index.html" class="back-link">Back to Calculator</a>
+    </div>
 
     <script type="module" src="report.js"></script>
 </body>
