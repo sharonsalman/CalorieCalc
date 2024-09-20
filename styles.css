@@ -106,3 +106,20 @@
     display: inline-block;
     margin-top: 20px;
   }
+
+  #deleteLastItem {
+    width: auto; 
+    padding: 5px 10px; 
+    font-size: 14px; 
+    margin-top: 10px; 
+    cursor: pointer; 
+    background-color: var(--primary-color); 
+    color: white; 
+    border: none; 
+    border-radius: var(--border-radius); 
+    transition: background-color 0.3s; 
+}
+
+#deleteLastItem:hover {
+    background-color: #3a7bc8; 
+}

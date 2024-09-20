@@ -11,13 +11,37 @@ document.addEventListener('DOMContentLoaded', async () => {
   setDefaultDate();
 });
 
+function setupEventListeners() {
+  document.getElementById('addCalorieForm').addEventListener('submit', addCalorieItem);
+  document.getElementById('deleteLastItem').addEventListener('click', deleteLastItem); // Add this line
+}
+
 function setDefaultDate() {
   const today = new Date().toISOString().split('T')[0]; 
   document.getElementById('date').value = today; 
 }
 
-function setupEventListeners() {
-  document.getElementById('addCalorieForm').addEventListener('submit', addCalorieItem);
+async function deleteLastItem() {
+  const items = await db.getAll();
+  if (items.length === 0) {
+    alert('No items to delete.');
+    return;
+  }
+
+  const lastItemId = items[items.length - 1].id; 
+
+  const transaction = db.db.transaction(["calorieItems"], "readwrite");
+  const objectStore = transaction.objectStore("calorieItems");
+  const request = objectStore.delete(lastItemId); 
+
+  request.onsuccess = () => {
+    alert('Last item deleted successfully.');
+    updateCalorieList(); 
+  };
+
+  request.onerror = () => {
+    alert('Error deleting last item.');
+  };
 }
 
 async function addCalorieItem(event) {
@@ -33,7 +57,6 @@ async function addCalorieItem(event) {
     return;
   }
 
-
   const item = {
     calories,
     category,
@@ -44,19 +67,16 @@ async function addCalorieItem(event) {
   try {
     await db.add(item); 
     updateCalorieList(); 
-   
     alert('Item added successfully!');
     event.target.reset(); 
     setDefaultDate(); 
   } catch (error) {
-
-  alert('Error adding item. Please try again.')
+    alert('Error adding item. Please try again.');
+  }
 }
-}
-
 
 async function updateCalorieList() {
-  const items = await db.getAll(); // Retrieve all items from IndexedDB
+  const items = await db.getAll(); 
   const list = document.getElementById('calorieList');
   list.innerHTML = '';
 
