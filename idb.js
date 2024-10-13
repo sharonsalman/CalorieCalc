@@ -32,7 +32,7 @@ class IDBLibrary {
         const request = objectStore.add(item);
   
         request.onerror = () => reject("Error adding item");
-        request.onsuccess = () => resolve();
+        request.onsuccess = (event) => resolve(event.target.result);
       });
     }
   
